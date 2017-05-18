@@ -8,7 +8,7 @@
         <div class="col-md-6">
           <div class="event-description">
             <h1><%= @event.title %></h1>
-            <h3><%= l @event.datetime %></h3>
+            <h3><%= l @event.datetime, format: :short %></h3>
             <h3><small><%= link_to @event.address,
                                    "https://yandex.ru/maps/?text=#{@event.address}" %></small></h3>
             <p><%= @event.description %></p>
@@ -53,14 +53,18 @@
           </p>
         </div>
       </div>
-      <div class="event-subscription-form">
-        <h4>Я пойду:</h4>
-        <div>
-          <%= render partial: 'subscriptions/form', locals: {
+
+      <% unless @event.user == current_user %>
+        <div class="event-subscription-form">
+          <h4>Я пойду:</h4>
+          <div>
+            <%= render partial: 'subscriptions/form', locals: {
               subscription: @new_subscription || @event.subscriptions.build
-          } %>
+            } %>
+          </div>
         </div>
-      </div>
+      <% end %>
+
     </div>
 
   </div>

@@ -2,7 +2,7 @@
 class SubscriptionsController < ApplicationController
   # Задаем «родительский» event для подписки
   before_action :set_event, only: [:create, :destroy]
-
+  before_action :own_event, only: [:create]
   # Задаем подписку, которую юзер хочет удалить
   before_action :set_subscription, only: [:destroy]
 
@@ -40,6 +40,12 @@ class SubscriptionsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:event_id])
+  end
+
+  def own_event
+    if @event.user == current_user
+      redirect_to @event, notice: I18n.t('controllers.subscriptions.own')
+    end
   end
 
   def subscription_params

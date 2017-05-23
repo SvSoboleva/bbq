@@ -13,8 +13,7 @@ class Subscription < ApplicationRecord
 
   # для данного event_id один email может использоваться только один раз (если нет юзера, анонимная подписка)
   validates :user_email, uniqueness: {scope: :event_id}, unless: 'user.present?'
-  validates :user_email, exclusion: { in: :users_array,
-                                      message: "%{value} уже зарегистрирован" }, unless: 'user.present?'
+  validate :email_in_db
 
   # переопределяем метод, если есть юзер, выдаем его имя,
   # если нет -- дергаем исходный переопределенный метод
@@ -36,8 +35,11 @@ class Subscription < ApplicationRecord
     end
   end
 
-  def users_array
-    User.all.map(&:email)
+  def email_in_db
+    if User.where(email: user_email).exists?
+      errors.add(:email, 'уже зарегистрирован')
+    end
   end
+
 end
 

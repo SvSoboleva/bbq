@@ -36,8 +36,10 @@ class Subscription < ApplicationRecord
   end
 
   def email_in_db
-    if User.where(email: user_email).exists?
-      errors.add(:email, 'уже зарегистрирован')
+    unless user.present?
+      if User.where(email: user_email).exists?
+        errors.add(:email, 'уже зарегистрирован')
+      end
     end
   end
 

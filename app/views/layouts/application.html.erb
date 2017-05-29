@@ -7,6 +7,7 @@
   <title><%= content_for?(:title) ? yield(:title) : "Bbq" %></title>
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag "application", :media => "all" %>
@@ -75,5 +76,7 @@
     <p>&copy; <%= t 'app.company' %> 2017</p>
   </footer>
 </div>
+
+
 </body>
 </html>

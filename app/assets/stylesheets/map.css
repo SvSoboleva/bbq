@@ -1,0 +1,28 @@
+.map {
+    padding: 40px 0;
+    background: #f3f3f3;
+}
+
+.map-logo {
+    width: 90%;
+    height: 80px;
+}
+
+.map-logo:after {
+    content: "";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.map-logo-image {
+    height: 80px;
+    float: left;
+}
+
+.map-text {
+    text-align: left;
+}
+
+

@@ -4,5 +4,13 @@
 
   <%# Показываем не только фотку, но и юзера, который её добавил %>
   Добавил <%= render partial: 'users/user', object: photo.user %>
+  <% if current_user_can_edit?(photo) %>
+      <%= link_to(
+              fa_icon('times'),
+              event_photo_path(photo.event, photo),
+              method: :delete,
+              data: {confirm: t('.destroy_confirm')}
+          ) %>
+  <% end %>
 
 </div>

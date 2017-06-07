@@ -1,8 +1,17 @@
 <%# Паршал для вывода отдельной фотографии %>
-<div class="event-photo buffer-both">
-  <% image_title = "Добавил #{render partial: 'users/user', object: photo.user}" %>
+<span class="event-photo">
+  <% if current_user_can_edit?(photo) %>
+    <% image_title = "Добавил #{render partial: 'users/user', object: photo.user}" +
+      " #{link_to(
+          fa_icon('trash-o'),
+          event_photo_path(photo.event, photo),
+          method: :delete,
+          data: {confirm: t('.destroy_confirm')}
+      )}" %>
+  <% else %>
+    <% image_title = "Добавил #{render partial: 'users/user', object: photo.user}" %>
+  <% end %>
   <%= link_to image_tag(photo.photo.thumb.url), photo.photo.url, data: {
       toggle: 'lightbox', title: image_title, gallery: 'event-photos'
   } %>
-
-</div>
+</span>

@@ -14,5 +14,9 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require maps
-//= require lightbox
+//= require lightbox-bootstrap
 //= require_tree .
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+  event.preventDefault();
+  $(this).ekkoLightbox();
+});

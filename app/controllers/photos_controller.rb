@@ -27,14 +27,14 @@ class PhotosController < ApplicationController
 
   # Действие для удаления фотографии
   def destroy
-    message = {notice: I18n.t('controllers.photos.destroyed')}
+    message = { notice: I18n.t('controllers.photos.destroyed') }
 
     # Проверяем, может ли пользователь удалить фотографию
     # Если может — удаляем, нет, меняем сообщение
     if current_user_can_edit?(@photo)
       @photo.destroy
     else
-      message = {alert: I18n.t('controllers.photos.error')}
+      message = { alert: I18n.t('controllers.photos.error') }
     end
 
     # И в любом случае редиректим его на событие
@@ -42,6 +42,7 @@ class PhotosController < ApplicationController
   end
 
   private
+
   # Так как фотография — вложенный ресурс, то в params[:event_id] рельсы
   # автоматически положает id события, которому принадлежит фотография
   # найденное событие будет лежать в переменной контроллера @event

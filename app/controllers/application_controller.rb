@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   # параметры, связанные со сменой пароля.
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
-        :account_update,
-        keys: [:password, :password_confirmation, :current_password]
+      :account_update,
+      keys: [:password, :password_confirmation, :current_password]
     )
   end
 

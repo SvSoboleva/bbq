@@ -1,5 +1,4 @@
 class EventMailer < ApplicationMailer
-
   # Письмо о новой подписке для автора события
   def subscription(event, subscription)
     @email = subscription.user_email

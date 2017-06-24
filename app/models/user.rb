@@ -8,9 +8,9 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :photos, dependent: :destroy
 
-  validates :name, presence: true, length: {maximum: 35}
+  validates :name, presence: true, length: { maximum: 35 }
 
-  before_validation :set_name , on: :create
+  before_validation :set_name, on: :create
 
   after_commit :link_subscriptions, on: :create
 
@@ -24,7 +24,6 @@ class User < ApplicationRecord
 
   def link_subscriptions
     Subscription.where(user_id: nil, user_email: self.email)
-        .update_all(user_id: self.id)
+                .update_all(user_id: self.id)
   end
-
 end

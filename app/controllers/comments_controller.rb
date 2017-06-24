@@ -17,12 +17,12 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
-    message = {notice: I18n.t('controllers.comments.destroyed')}
+    message = { notice: I18n.t('controllers.comments.destroyed') }
 
     if current_user_can_edit?(@comment)
       @comment.destroy!
     else
-      message = {alert: I18n.t('controllers.comments.error')}
+      message = { alert: I18n.t('controllers.comments.error') }
     end
 
     redirect_to @event, message
@@ -45,8 +45,8 @@ class CommentsController < ApplicationController
   def notify_subscribers(event, comment)
     # собираем всех подписчиков и автора события в массив мэйлов, исключаем повторяющиеся
     all_emails = (event.subscriptions.map(&:user_email) + [event.user.email]).uniq
-    #исключаем автора комментария
-    #all_emails.delete((User.try(:find_by, email: comment.user.email).email)) if comment.user.present?
+    # исключаем автора комментария
+    # all_emails.delete((User.try(:find_by, email: comment.user.email).email)) if comment.user.present?
     all_emails.delete(comment.user.email) if comment.user.present?
 
     # XXX: Этот метод может выполняться долго из-за большого числа подписчиков

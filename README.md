@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Шашлыки!**
 
-Things you may want to cover:
+Учебное приложение — организатор событий на rails 5.0.2
 
-* Ruby version
+Создавайте события, приглашайте друзей!
 
-* System dependencies
+Рассчитано на работу с Heroku.
 
-* Configuration
+Предназначено для освоения работы с базами данных, проработки ассоциаций между таблицами: 
+one-to-many, many-to-many, работа с загрузкой файлов, аутентификацией, авторизацией, гемами devise, 
+carrierwave, фреймворком bootstrap.
 
-* Database creation
+Учит также основам работы с локализацией и YML файлами.
 
-* Database initialization
+**Демо**
 
-* How to run the test suite
+https://eventsbbq.herokuapp.com/
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+**Установка**
 
-* ...
+Для разворачивания своей копии клонируйте гит репозиторий , залейте на свое приложение на Heroku 
+(или создайте новое heroku create). Также поправьте урл сайта в production.rb.
+
+Для работы почты на хероку должен быть подключен SendGrid
